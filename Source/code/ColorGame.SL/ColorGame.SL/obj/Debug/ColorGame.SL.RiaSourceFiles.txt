@@ -1,0 +1,1 @@
+D:\Xwork\memory-game\Source\code\ColorGame.SL\ColorGame.SL.Web\ColorGame.SL.Web.csproj,635503154041335937,Properties\AssemblyInfo.cs,
