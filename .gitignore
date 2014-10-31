@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Source/code/ColorGame.DataLayer/obj/Debug
+/Source/code/ColorGame.SL/obj/Debug
+/Source/code/ColorGame.SL.Web
+/Source/code/GameService.Wcf
+/Source/code/ColorGame.Complete.v12.suo
