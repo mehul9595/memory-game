@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="/Imports">
+      <xsd:import schemaLocation="http://localhost/Service/Service.svc?xsd=xsd0" />
+      <xsd:import schemaLocation="http://localhost/Service/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost/Service/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ColorGame.DataLayer.Model" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Service_DoWork_InputMessage">
+    <wsdl:part name="parameters" element="DoWork" />
+  </wsdl:message>
+  <wsdl:message name="Service_DoWork_OutputMessage">
+    <wsdl:part name="parameters" element="DoWorkResponse" />
+  </wsdl:message>
+  <wsdl:message name="Service_GetData_InputMessage">
+    <wsdl:part name="parameters" element="GetData" />
+  </wsdl:message>
+  <wsdl:message name="Service_GetData_OutputMessage">
+    <wsdl:part name="parameters" element="GetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="Service_Save_InputMessage">
+    <wsdl:part name="parameters" element="Save" />
+  </wsdl:message>
+  <wsdl:message name="Service_Save_OutputMessage">
+    <wsdl:part name="parameters" element="SaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="Service_GetTopRankersWithCurrentUser_InputMessage">
+    <wsdl:part name="parameters" element="GetTopRankersWithCurrentUser" />
+  </wsdl:message>
+  <wsdl:message name="Service_GetTopRankersWithCurrentUser_OutputMessage">
+    <wsdl:part name="parameters" element="GetTopRankersWithCurrentUserResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Service">
+    <wsdl:operation name="DoWork">
+      <wsdl:input wsaw:Action="urn:Service/DoWork" message="Service_DoWork_InputMessage" />
+      <wsdl:output wsaw:Action="urn:Service/DoWorkResponse" message="Service_DoWork_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetData">
+      <wsdl:input wsaw:Action="urn:Service/GetData" message="Service_GetData_InputMessage" />
+      <wsdl:output wsaw:Action="urn:Service/GetDataResponse" message="Service_GetData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <wsdl:input wsaw:Action="urn:Service/Save" message="Service_Save_InputMessage" />
+      <wsdl:output wsaw:Action="urn:Service/SaveResponse" message="Service_Save_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopRankersWithCurrentUser">
+      <wsdl:input wsaw:Action="urn:Service/GetTopRankersWithCurrentUser" message="Service_GetTopRankersWithCurrentUser_InputMessage" />
+      <wsdl:output wsaw:Action="urn:Service/GetTopRankersWithCurrentUserResponse" message="Service_GetTopRankersWithCurrentUser_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
