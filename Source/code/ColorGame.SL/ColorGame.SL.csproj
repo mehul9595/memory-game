@@ -73,6 +73,8 @@
       <HintPath>$(TargetFrameworkDirectory)System.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Controls, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Data, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Toolkit">
       <HintPath>..\..\..\libs\System.Windows.Controls.Toolkit.dll</HintPath>
     </Reference>
@@ -84,14 +86,25 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Converters\ImageConverter.cs" />
+    <Compile Include="Converters\TimeConverter.cs" />
+    <Compile Include="Converters\VisibilityConverter.cs" />
+    <Compile Include="Helpers\CallDataContextMethodAction.cs" />
+    <Compile Include="Helpers\ServiceHelperProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\ColorGameService\Reference.cs">
+    <Compile Include="Service References\GameScoreService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\CardGameViewModel.cs" />
+    <Compile Include="ViewModel\CardViewModel.cs" />
+    <Compile Include="ViewModel\ScoreInfoViewModel.cs" />
+    <Compile Include="View\ColorGame.xaml.cs">
+      <DependentUpon>ColorGame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScoreInfo.xaml.cs">
+      <DependentUpon>ScoreInfo.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -99,46 +112,67 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
-    <None Include="Service References\ColorGameService\Service.wsdl" />
-    <None Include="Service References\ColorGameService\Service.xsd">
+    <None Include="Service References\GameScoreService\ColorGame.SL.GameScoreService.UserScore.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GameScoreService\ScoreService.disco" />
+    <None Include="Service References\GameScoreService\configuration91.svcinfo" />
+    <None Include="Service References\GameScoreService\configuration.svcinfo" />
+    <None Include="Service References\GameScoreService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Resource Include="Images\card_bg.png" />
+    <Resource Include="Images\colour1.png" />
+    <Resource Include="Images\colour2.png" />
+    <Resource Include="Images\colour3.png" />
+    <Resource Include="Images\colour4.png" />
+    <Resource Include="Images\colour5.png" />
+    <Resource Include="Images\colour6.png" />
+    <Resource Include="Images\colour7.png" />
+    <Resource Include="Images\colour8.png" />
+    <Resource Include="Images\logo.png" />
+    <Resource Include="Images\bg.jpg" />
+    <Resource Include="Images\icon_pencil.png" />
+    <Resource Include="Images\table.jpg" />
+    <Resource Include="Images\WhiteClock.png" />
+    <Content Include="ServiceReferences.ClientConfig">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Service References\GameScoreService\ScoreService.wsdl" />
+    <None Include="Service References\GameScoreService\ScoreService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ColorGameService\Service1.wsdl" />
-    <None Include="Service References\ColorGameService\Service1.xsd">
+    <None Include="Service References\GameScoreService\ScoreService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ColorGameService\Service2.xsd">
+    <None Include="Service References\GameScoreService\ScoreService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\ColorGameService\" />
+    <WCFMetadataStorage Include="Service References\GameScoreService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ColorGameService\Service.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ColorGameService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ColorGameService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ColorGameService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    <Page Include="Styles\ColorGameStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ColorGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ScoreInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

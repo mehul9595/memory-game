@@ -3,38 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.ServiceModel.Activation;
-using System.ServiceModel.Web;
 using System.Text;
 using ColorGame.DataLayer.Model;
 
 namespace GameService.Wcf
 {
-    [ServiceContract(Namespace = "")]
-    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
-    public class Service
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "ScoreService" in code, svc and config file together.
+    // NOTE: In order to launch WCF Test Client for testing this service, please select ScoreService.svc or ScoreService.svc.cs at the Solution Explorer and start debugging.
+    public class ScoreService : IScoreService
     {
-        // To use HTTP GET, add [WebGet] attribute. (Default ResponseFormat is WebMessageFormat.Json)
-        // To create an operation that returns XML,
-        //     add [WebGet(ResponseFormat=WebMessageFormat.Xml)],
-        //     and include the following line in the operation body:
-        //         WebOperationContext.Current.OutgoingResponse.ContentType = "text/xml";
-        [OperationContract]
         public void DoWork()
         {
-            // Add your operation implementation here
-            return;
         }
 
-        // Add more operations here and mark them with [OperationContract]
-
-        [OperationContract]
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
         }
 
-        [OperationContract]
         public void Save(UserScore userScore)
         {
             if (userScore == null)
@@ -43,10 +29,8 @@ namespace GameService.Wcf
             }
 
             UserScore.Save(userScore);
-
         }
 
-        [OperationContract]
         public UserScore[] GetTopRankersWithCurrentUser(UserScore userScore)
         {
             var results = UserScore.GetTopRankersWithCurrentUser(userScore);

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="419b9b03-55de-4562-ad3c-932b4e869b78" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/Service/ScoreService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ScoreService.disco" MetadataType="Disco" ID="9bdc00e2-4215-4275-95c2-800e5e8faf4f" SourceId="1" SourceUrl="http://localhost/Service/ScoreService.svc?disco" />
+    <MetadataFile FileName="ScoreService.xsd" MetadataType="Schema" ID="b8ddad09-1373-4415-82c1-cd2ec9a22745" SourceId="1" SourceUrl="http://localhost/Service/ScoreService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ScoreService1.xsd" MetadataType="Schema" ID="3512f6d0-305c-4c1d-acae-c09459d9b71c" SourceId="1" SourceUrl="http://localhost/Service/ScoreService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ScoreService.wsdl" MetadataType="Wsdl" ID="f8b7d933-a0df-4bc7-bec8-ee09cfa1c95f" SourceId="1" SourceUrl="http://localhost/Service/ScoreService.svc?wsdl" />
+    <MetadataFile FileName="ScoreService2.xsd" MetadataType="Schema" ID="2f6d8a10-0e01-4a62-b494-7f1acba484d3" SourceId="1" SourceUrl="http://localhost/Service/ScoreService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

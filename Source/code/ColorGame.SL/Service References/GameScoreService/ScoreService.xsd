@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost/Service/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ColorGame.DataLayer.Model" />
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/Service/ScoreService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ColorGame.DataLayer.Model" />
   <xs:element name="DoWork">
     <xs:complexType>
       <xs:sequence />
