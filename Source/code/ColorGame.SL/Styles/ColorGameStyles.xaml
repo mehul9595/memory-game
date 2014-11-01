@@ -200,7 +200,7 @@
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0" To=".55" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="contentPresenter"/>
+                                        <!--<DoubleAnimation Duration="0" To=".55" Storyboard.TargetProperty="Opacity"  Storyboard.TargetName="contentPresenter" />-->
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -309,7 +309,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="TopRankersListBoxItemStle" TargetType="ListBoxItem">
+    <!--<Style x:Key="TopRankersListBoxItemStle" TargetType="ListBoxItem">
         <Setter Property="Padding" Value="3"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Top"/>
@@ -367,7 +367,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 
 
 </ResourceDictionary>

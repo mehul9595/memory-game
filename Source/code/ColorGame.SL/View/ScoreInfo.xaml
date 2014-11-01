@@ -22,11 +22,11 @@
             </Grid.RowDefinitions>
 
             <TextBlock Text="Name : " HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0" Margin="5"/>
-            <TextBox x:Name="tbName" Text="{Binding Name, Mode=TwoWay}" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="0" Margin="5"/>
+            <TextBox x:Name="tbName" Text="{Binding Name, Mode=TwoWay}" Height="22" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="0" Margin="5,2,0,3"/>
             <TextBlock Text="Email Address : " HorizontalAlignment="Right" Grid.Column="0" Grid.Row="1" Margin="5"/>
-            <TextBox x:Name="tbEmail" Text="{Binding Email, Mode=TwoWay}" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Margin="5"/>
+            <TextBox x:Name="tbEmail" Text="{Binding Email, Mode=TwoWay}" Height="22" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Margin="5,2,0,3"/>
             <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="5">
-                <CheckBox x:Name="chkUseDB" Content="Use DataBase:" Margin="5" IsChecked="{Binding UseDatabase}" />
+                <CheckBox x:Name="chkUseDB" Content="Use DataBase" Margin="5" IsChecked="{Binding UseDatabase, Mode=TwoWay}" />
                 <Button  Width="100" Content="Submit" Command="{Binding SubmitDelegate}" Margin="5"/>
 
             </StackPanel>

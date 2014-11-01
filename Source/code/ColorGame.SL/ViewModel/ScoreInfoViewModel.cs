@@ -23,8 +23,13 @@ namespace ColorGame.SL.ViewModel
             _scoreModel = new UserScore();
             UserScores = new ObservableCollection<UserScore>();
 
+            //remove if any existing subscriptions & subscribe
+            ServiceHelperProxy.GameScoreServiceClient.GetTopRankersWithCurrentUserCompleted -=
+                (ColorGameServiceGetTopRankersWithCurrentUserCompleted);
             ServiceHelperProxy.GameScoreServiceClient.GetTopRankersWithCurrentUserCompleted +=
                 (ColorGameServiceGetTopRankersWithCurrentUserCompleted);
+
+            ServiceHelperProxy.GameScoreServiceClient.SaveCompleted -= (ColorGameServiceSaveCompleted);
             ServiceHelperProxy.GameScoreServiceClient.SaveCompleted += (ColorGameServiceSaveCompleted);
 
             _scoreModel.Score = score;
@@ -34,8 +39,7 @@ namespace ColorGame.SL.ViewModel
             SubmitDelegate = new DelegateCommand(OnSubmitDelegate, CanExecute);
             SubmitDelegate.RaiseCanExecuteChanged();
         }
-
-
+        
         public string Name
         {
             get { return _name; }
@@ -164,8 +168,7 @@ namespace ColorGame.SL.ViewModel
                 IsSubmitScoreCollapsed = true;
             }
         }
-
-
+        
         public void SaveModel(UserScore userScoreModel)
         {
             ServiceHelperProxy.GameScoreServiceClient.SaveAsync(userScoreModel);

@@ -2,7 +2,11 @@
   <system.serviceModel>
     <bindings>
       <basicHttpBinding>
-        <binding name="BasicHttpBinding_IScoreService" maxBufferSize="2147483647"
+        <binding name="BasicHttpBinding_IScoreService" maxBufferSize="2147483647" 
+                 closeTimeout="00:10:00" 
+                 openTimeout="00:10:00" 
+                 receiveTimeout="00:10:00" 
+                 sendTimeout="00:10:00"
           maxReceivedMessageSize="2147483647">
           <security mode="None" />
         </binding>
@@ -11,7 +15,7 @@
     </bindings>
     <client>
       <endpoint address="http://localhost/Service/ScoreService.svc"
-        binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IScoreService"
+        binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IScoreService" 
         contract="GameScoreService.IScoreService" name="BasicHttpBinding_IScoreService" />
     </client>
   </system.serviceModel>

@@ -189,8 +189,7 @@ namespace ColorGame.SL.ViewModel
             {
                 // one is upside + lastCard is 2, check IDs
                 MoveCounter++;
-                //var upsideCard = CardViewModels.First(m => m.Upside);
-
+                
                 if (_lastUpsideCard != null && _lastUpsideCard.Key == lastCard.Key)
                 {
                     if (CardViewModels.Count(m => !m.Solved) == 2)
@@ -252,8 +251,7 @@ namespace ColorGame.SL.ViewModel
         {
             _endTimer.Stop();
             IsGameEnded = true;
-            //MessageBox.Default.Send(Constants.EndGameMessage);
-            //TODO: Score dialog
+            
             var scoreInfo = new ScoreInfo(Score);
             scoreInfo.Show();
         }
