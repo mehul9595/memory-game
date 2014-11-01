@@ -6,6 +6,9 @@ using System.Windows.Media.Imaging;
 
 namespace ColorGame.SL.Converters
 {
+    /// <summary>
+    ///     Converts image path to an Bitmap Image.
+    /// </summary>
     public class ImageConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

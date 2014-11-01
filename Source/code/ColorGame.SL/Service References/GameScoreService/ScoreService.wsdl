@@ -7,18 +7,6 @@
       <xsd:import schemaLocation="http://localhost/Service/ScoreService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ColorGame.DataLayer.Model" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IScoreService_DoWork_InputMessage">
-    <wsdl:part name="parameters" element="tns:DoWork" />
-  </wsdl:message>
-  <wsdl:message name="IScoreService_DoWork_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DoWorkResponse" />
-  </wsdl:message>
-  <wsdl:message name="IScoreService_GetData_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetData" />
-  </wsdl:message>
-  <wsdl:message name="IScoreService_GetData_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataResponse" />
-  </wsdl:message>
   <wsdl:message name="IScoreService_Save_InputMessage">
     <wsdl:part name="parameters" element="tns:Save" />
   </wsdl:message>
@@ -32,14 +20,6 @@
     <wsdl:part name="parameters" element="tns:GetTopRankersWithCurrentUserResponse" />
   </wsdl:message>
   <wsdl:portType name="IScoreService">
-    <wsdl:operation name="DoWork">
-      <wsdl:input wsaw:Action="http://tempuri.org/IScoreService/DoWork" message="tns:IScoreService_DoWork_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IScoreService/DoWorkResponse" message="tns:IScoreService_DoWork_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetData">
-      <wsdl:input wsaw:Action="http://tempuri.org/IScoreService/GetData" message="tns:IScoreService_GetData_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IScoreService/GetDataResponse" message="tns:IScoreService_GetData_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="Save">
       <wsdl:input wsaw:Action="http://tempuri.org/IScoreService/Save" message="tns:IScoreService_Save_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IScoreService/SaveResponse" message="tns:IScoreService_Save_OutputMessage" />
@@ -51,24 +31,6 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IScoreService" type="tns:IScoreService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="DoWork">
-      <soap:operation soapAction="http://tempuri.org/IScoreService/DoWork" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetData">
-      <soap:operation soapAction="http://tempuri.org/IScoreService/GetData" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="Save">
       <soap:operation soapAction="http://tempuri.org/IScoreService/Save" style="document" />
       <wsdl:input>

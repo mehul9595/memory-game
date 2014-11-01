@@ -4,6 +4,9 @@ using System.Windows.Data;
 
 namespace ColorGame.SL.Converters
 {
+    /// <summary>
+    ///     Converts time into formatted string.
+    /// </summary>
     public class TimeConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

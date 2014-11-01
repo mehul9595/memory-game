@@ -12,34 +12,18 @@ namespace ColorGame.SL.ViewModel
 {
     public class ScoreInfoViewModel : NotificationObject
     {
+        #region Fields
+
         private readonly UserScore _scoreModel;
         private string _email;
         private bool _isGridCollased, _isSubmitScoreCollapsed;
         private string _name;
         private bool _useDatabase;
 
-        public ScoreInfoViewModel(int score)
-        {
-            _scoreModel = new UserScore();
-            UserScores = new ObservableCollection<UserScore>();
+        #endregion Fields
 
-            //remove if any existing subscriptions & subscribe
-            ServiceHelperProxy.GameScoreServiceClient.GetTopRankersWithCurrentUserCompleted -=
-                (ColorGameServiceGetTopRankersWithCurrentUserCompleted);
-            ServiceHelperProxy.GameScoreServiceClient.GetTopRankersWithCurrentUserCompleted +=
-                (ColorGameServiceGetTopRankersWithCurrentUserCompleted);
+        #region Properties
 
-            ServiceHelperProxy.GameScoreServiceClient.SaveCompleted -= (ColorGameServiceSaveCompleted);
-            ServiceHelperProxy.GameScoreServiceClient.SaveCompleted += (ColorGameServiceSaveCompleted);
-
-            _scoreModel.Score = score;
-            IsSubmitScoreCollapsed = false;
-            IsGridCollapsed = true;
-
-            SubmitDelegate = new DelegateCommand(OnSubmitDelegate, CanExecute);
-            SubmitDelegate.RaiseCanExecuteChanged();
-        }
-        
         public string Name
         {
             get { return _name; }
@@ -96,6 +80,46 @@ namespace ColorGame.SL.ViewModel
 
         public ObservableCollection<UserScore> UserScores { get; set; }
 
+        #endregion Properties
+
+        #region Constructor
+
+        public ScoreInfoViewModel(int score)
+        {
+            _scoreModel = new UserScore();
+            UserScores = new ObservableCollection<UserScore>();
+
+            //remove if any existing subscriptions & subscribe
+            ServiceHelperProxy.GameScoreServiceClient.GetTopRankersWithCurrentUserCompleted -=
+                (ColorGameServiceGetTopRankersWithCurrentUserCompleted);
+            ServiceHelperProxy.GameScoreServiceClient.GetTopRankersWithCurrentUserCompleted +=
+                (ColorGameServiceGetTopRankersWithCurrentUserCompleted);
+
+            ServiceHelperProxy.GameScoreServiceClient.SaveCompleted -= (ColorGameServiceSaveCompleted);
+            ServiceHelperProxy.GameScoreServiceClient.SaveCompleted += (ColorGameServiceSaveCompleted);
+
+            _scoreModel.Score = score;
+            IsSubmitScoreCollapsed = false;
+            IsGridCollapsed = true;
+
+            SubmitDelegate = null;
+            SubmitDelegate = new DelegateCommand(OnSubmitDelegate, CanExecute);
+            SubmitDelegate.RaiseCanExecuteChanged();
+        }
+
+        #endregion Constructor
+
+        #region Public Methods
+
+        public void SaveModel(UserScore userScoreModel)
+        {
+            ServiceHelperProxy.GameScoreServiceClient.SaveAsync(userScoreModel);
+        }
+
+        #endregion Public Methods
+
+        #region Private Methods
+
         private void ColorGameServiceSaveCompleted(object sender, AsyncCompletedEventArgs e)
         {
             if (e.Error != null)
@@ -132,7 +156,6 @@ namespace ColorGame.SL.ViewModel
             }
         }
 
-
         private bool CanExecute()
         {
             return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Email);
@@ -150,11 +173,11 @@ namespace ColorGame.SL.ViewModel
             else
             {
                 var userScores = new List<UserScore>();
-                userScores.Add(new UserScore {Email = "max@hotmail.com", Name = "Max", Score = 2});
-                userScores.Add(new UserScore {Email = "charlie@yahoo.com", Name = "Charlie", Score = 5});
-                userScores.Add(new UserScore {Email = "gomes@gomes.com", Name = "Gomes", Score = 4});
-                userScores.Add(new UserScore {Email = "eric@butterfield.com", Name = "Eric", Score = 2});
-                userScores.Add(new UserScore {Email = "steve@jobs.com", Name = "Steve", Score = -3});
+                userScores.Add(new UserScore { Email = "max@hotmail.com", Name = "Max", Score = 2 });
+                userScores.Add(new UserScore { Email = "charlie@yahoo.com", Name = "Charlie", Score = 5 });
+                userScores.Add(new UserScore { Email = "gomes@gomes.com", Name = "Gomes", Score = 4 });
+                userScores.Add(new UserScore { Email = "eric@butterfield.com", Name = "Eric", Score = 2 });
+                userScores.Add(new UserScore { Email = "steve@jobs.com", Name = "Steve", Score = -3 });
                 userScores.Add(_scoreModel);
                 userScores.OrderByDescending(r => r.Score).ToList();
                 int counter = 1;
@@ -168,10 +191,7 @@ namespace ColorGame.SL.ViewModel
                 IsSubmitScoreCollapsed = true;
             }
         }
-        
-        public void SaveModel(UserScore userScoreModel)
-        {
-            ServiceHelperProxy.GameScoreServiceClient.SaveAsync(userScoreModel);
-        }
+
+        #endregion Private Methods
     }
 }

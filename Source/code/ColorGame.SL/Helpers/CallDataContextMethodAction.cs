@@ -6,6 +6,9 @@ using System.Windows.Media;
 
 namespace ColorGame.SL.Helpers
 {
+    /// <summary>
+    ///     Trigger implementation for calling method on DataContext
+    /// </summary>
     public class CallDataContextMethodAction : TriggerAction<DependencyObject>
     {
         public string MethodName { get; set; }
@@ -16,16 +19,16 @@ namespace ColorGame.SL.Helpers
 
         protected override void Invoke(object o)
         {
-            FrameworkElement fwe = this.AssociatedObject as FrameworkElement;
+            var fwe = AssociatedObject as FrameworkElement;
             if (fwe == null)
                 return;
 
-            var aodc = fwe.DataContext;
+            object aodc = fwe.DataContext;
             bool successful = false;
             object lastdc = null;
             while (fwe != null)
             {
-                var fwedc = fwe.DataContext;
+                object fwedc = fwe.DataContext;
                 if (fwedc == null || fwedc.Equals(lastdc))
                 {
                     fwe = VisualTreeHelper.GetParent(fwe) as FrameworkElement;
@@ -40,7 +43,7 @@ namespace ColorGame.SL.Helpers
                 else
                 {
                     if (mi.GetParameters().Length == 1)
-                        mi.Invoke(fwedc, new object[1] { aodc });
+                        mi.Invoke(fwedc, new object[1] {aodc});
                     else
                         mi.Invoke(fwedc, null);
                     successful = true;
@@ -48,7 +51,8 @@ namespace ColorGame.SL.Helpers
                 }
             }
             if (!successful)
-                throw new InvalidOperationException(String.Format("Action Invoke failed: data context does not contain a method '{0}'", MethodName));
+                throw new InvalidOperationException(
+                    String.Format("Action Invoke failed: data context does not contain a method '{0}'", MethodName));
         }
     }
 }

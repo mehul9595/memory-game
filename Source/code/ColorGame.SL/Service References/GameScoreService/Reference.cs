@@ -94,16 +94,6 @@ namespace ColorGame.SL.GameScoreService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GameScoreService.IScoreService")]
     public interface IScoreService {
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IScoreService/DoWork", ReplyAction="http://tempuri.org/IScoreService/DoWorkResponse")]
-        System.IAsyncResult BeginDoWork(System.AsyncCallback callback, object asyncState);
-        
-        void EndDoWork(System.IAsyncResult result);
-        
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IScoreService/GetData", ReplyAction="http://tempuri.org/IScoreService/GetDataResponse")]
-        System.IAsyncResult BeginGetData(int value, System.AsyncCallback callback, object asyncState);
-        
-        string EndGetData(System.IAsyncResult result);
-        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IScoreService/Save", ReplyAction="http://tempuri.org/IScoreService/SaveResponse")]
         System.IAsyncResult BeginSave(ColorGame.SL.GameScoreService.UserScore userScore, System.AsyncCallback callback, object asyncState);
         
@@ -117,25 +107,6 @@ namespace ColorGame.SL.GameScoreService {
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IScoreServiceChannel : ColorGame.SL.GameScoreService.IScoreService, System.ServiceModel.IClientChannel {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public GetDataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public string Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -160,18 +131,6 @@ namespace ColorGame.SL.GameScoreService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class ScoreServiceClient : System.ServiceModel.ClientBase<ColorGame.SL.GameScoreService.IScoreService>, ColorGame.SL.GameScoreService.IScoreService {
-        
-        private BeginOperationDelegate onBeginDoWorkDelegate;
-        
-        private EndOperationDelegate onEndDoWorkDelegate;
-        
-        private System.Threading.SendOrPostCallback onDoWorkCompletedDelegate;
-        
-        private BeginOperationDelegate onBeginGetDataDelegate;
-        
-        private EndOperationDelegate onEndGetDataDelegate;
-        
-        private System.Threading.SendOrPostCallback onGetDataCompletedDelegate;
         
         private BeginOperationDelegate onBeginSaveDelegate;
         
@@ -238,10 +197,6 @@ namespace ColorGame.SL.GameScoreService {
             }
         }
         
-        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> DoWorkCompleted;
-        
-        public event System.EventHandler<GetDataCompletedEventArgs> GetDataCompleted;
-        
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> SaveCompleted;
         
         public event System.EventHandler<GetTopRankersWithCurrentUserCompletedEventArgs> GetTopRankersWithCurrentUserCompleted;
@@ -249,95 +204,6 @@ namespace ColorGame.SL.GameScoreService {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult ColorGame.SL.GameScoreService.IScoreService.BeginDoWork(System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginDoWork(callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        void ColorGame.SL.GameScoreService.IScoreService.EndDoWork(System.IAsyncResult result) {
-            base.Channel.EndDoWork(result);
-        }
-        
-        private System.IAsyncResult OnBeginDoWork(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            return ((ColorGame.SL.GameScoreService.IScoreService)(this)).BeginDoWork(callback, asyncState);
-        }
-        
-        private object[] OnEndDoWork(System.IAsyncResult result) {
-            ((ColorGame.SL.GameScoreService.IScoreService)(this)).EndDoWork(result);
-            return null;
-        }
-        
-        private void OnDoWorkCompleted(object state) {
-            if ((this.DoWorkCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.DoWorkCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void DoWorkAsync() {
-            this.DoWorkAsync(null);
-        }
-        
-        public void DoWorkAsync(object userState) {
-            if ((this.onBeginDoWorkDelegate == null)) {
-                this.onBeginDoWorkDelegate = new BeginOperationDelegate(this.OnBeginDoWork);
-            }
-            if ((this.onEndDoWorkDelegate == null)) {
-                this.onEndDoWorkDelegate = new EndOperationDelegate(this.OnEndDoWork);
-            }
-            if ((this.onDoWorkCompletedDelegate == null)) {
-                this.onDoWorkCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDoWorkCompleted);
-            }
-            base.InvokeAsync(this.onBeginDoWorkDelegate, null, this.onEndDoWorkDelegate, this.onDoWorkCompletedDelegate, userState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult ColorGame.SL.GameScoreService.IScoreService.BeginGetData(int value, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetData(value, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        string ColorGame.SL.GameScoreService.IScoreService.EndGetData(System.IAsyncResult result) {
-            return base.Channel.EndGetData(result);
-        }
-        
-        private System.IAsyncResult OnBeginGetData(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int value = ((int)(inValues[0]));
-            return ((ColorGame.SL.GameScoreService.IScoreService)(this)).BeginGetData(value, callback, asyncState);
-        }
-        
-        private object[] OnEndGetData(System.IAsyncResult result) {
-            string retVal = ((ColorGame.SL.GameScoreService.IScoreService)(this)).EndGetData(result);
-            return new object[] {
-                    retVal};
-        }
-        
-        private void OnGetDataCompleted(object state) {
-            if ((this.GetDataCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.GetDataCompleted(this, new GetDataCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void GetDataAsync(int value) {
-            this.GetDataAsync(value, null);
-        }
-        
-        public void GetDataAsync(int value, object userState) {
-            if ((this.onBeginGetDataDelegate == null)) {
-                this.onBeginGetDataDelegate = new BeginOperationDelegate(this.OnBeginGetData);
-            }
-            if ((this.onEndGetDataDelegate == null)) {
-                this.onEndGetDataDelegate = new EndOperationDelegate(this.OnEndGetData);
-            }
-            if ((this.onGetDataCompletedDelegate == null)) {
-                this.onGetDataCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetDataCompleted);
-            }
-            base.InvokeAsync(this.onBeginGetDataDelegate, new object[] {
-                        value}, this.onEndGetDataDelegate, this.onGetDataCompletedDelegate, userState);
-        }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.IAsyncResult ColorGame.SL.GameScoreService.IScoreService.BeginSave(ColorGame.SL.GameScoreService.UserScore userScore, System.AsyncCallback callback, object asyncState) {
@@ -504,30 +370,6 @@ namespace ColorGame.SL.GameScoreService {
             
             public ScoreServiceClientChannel(System.ServiceModel.ClientBase<ColorGame.SL.GameScoreService.IScoreService> client) : 
                     base(client) {
-            }
-            
-            public System.IAsyncResult BeginDoWork(System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[0];
-                System.IAsyncResult _result = base.BeginInvoke("DoWork", _args, callback, asyncState);
-                return _result;
-            }
-            
-            public void EndDoWork(System.IAsyncResult result) {
-                object[] _args = new object[0];
-                base.EndInvoke("DoWork", _args, result);
-            }
-            
-            public System.IAsyncResult BeginGetData(int value, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[1];
-                _args[0] = value;
-                System.IAsyncResult _result = base.BeginInvoke("GetData", _args, callback, asyncState);
-                return _result;
-            }
-            
-            public string EndGetData(System.IAsyncResult result) {
-                object[] _args = new object[0];
-                string _result = ((string)(base.EndInvoke("GetData", _args, result)));
-                return _result;
             }
             
             public System.IAsyncResult BeginSave(ColorGame.SL.GameScoreService.UserScore userScore, System.AsyncCallback callback, object asyncState) {

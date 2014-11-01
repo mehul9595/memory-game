@@ -2,6 +2,9 @@
 
 namespace ColorGame.SL.Helpers
 {
+    /// <summary>
+    ///     Singleton Score service proxy
+    /// </summary>
     public class ServiceHelperProxy
     {
         private static ScoreServiceClient _scoreServiceClient;

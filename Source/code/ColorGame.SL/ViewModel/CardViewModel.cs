@@ -15,7 +15,7 @@ namespace ColorGame.SL.ViewModel
         private bool _upside;
         private int _width;
 
-        #endregion
+        #endregion Fields
 
         #region Properties
 
@@ -76,7 +76,9 @@ namespace ColorGame.SL.ViewModel
             }
         }
 
-        #endregion
+        #endregion Properties
+
+        #region Constructor
 
         public CardViewModel(int key)
         {
@@ -86,10 +88,18 @@ namespace ColorGame.SL.ViewModel
             InitTimer();
         }
 
+        #endregion Constructor
+
+        #region Public Methods
+
         public void SetSolved()
         {
             _solvedTimer.Start();
         }
+
+        #endregion Public Methods
+
+        #region Private Methods
 
         private void InitTimer()
         {
@@ -100,5 +110,7 @@ namespace ColorGame.SL.ViewModel
                 Solved = true;
             };
         }
+
+        #endregion Private Methods
     }
 }

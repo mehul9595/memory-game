@@ -19,7 +19,6 @@ namespace ColorGame.SL.ViewModel
 
         private DispatcherTimer _elapsedTimer;
         private DispatcherTimer _endTimer;
-
         private bool _isGameEnded, _isRectCollapsed;
         private CardViewModel _lastUpsideCard;
         private int _moveCounter;
@@ -29,7 +28,7 @@ namespace ColorGame.SL.ViewModel
         private int _timeCounter;
         private DispatcherTimer _timer;
 
-        #endregion
+        #endregion Fields
 
         #region Properties
 
@@ -106,7 +105,9 @@ namespace ColorGame.SL.ViewModel
 
         public DelegateCommand RestartGame { get; set; }
 
-        #endregion
+        #endregion Properties
+
+        #region Constructor
 
         public CardGameViewModel()
         {
@@ -116,30 +117,25 @@ namespace ColorGame.SL.ViewModel
             Initialize();
         }
 
+        #endregion Constructor
+
+        #region Public Methods
+
         public void Initialize()
         {
             _resetTimer = new DispatcherTimer();
             _resetTimer.Interval = new TimeSpan(0, 0, 1);
             _resetTimer.Tick += ResetHideTick;
 
-            _timer = new DispatcherTimer {Interval = new TimeSpan(0, 0, 0, 0, 500)};
+            _timer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 500) };
             _timer.Tick += CardTimerTick;
 
-            _elapsedTimer = new DispatcherTimer {Interval = new TimeSpan(0, 0, 1)};
+            _elapsedTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 1) };
 
             _elapsedTimer.Tick += ElapsedTimerTick;
 
             StartGame();
             LoadCards();
-        }
-
-        private void StartGame()
-        {
-            Score = 0;
-            MoveCounter = 0;
-            TimeCounter = 0;
-            PairCounter = 0;
-            _elapsedTimer.Start();
         }
 
         public void LoadCards()
@@ -189,7 +185,7 @@ namespace ColorGame.SL.ViewModel
             {
                 // one is upside + lastCard is 2, check IDs
                 MoveCounter++;
-                
+
                 if (_lastUpsideCard != null && _lastUpsideCard.Key == lastCard.Key)
                 {
                     if (CardViewModels.Count(m => !m.Solved) == 2)
@@ -229,6 +225,19 @@ namespace ColorGame.SL.ViewModel
             lastCard.Upside = true;
         }
 
+        #endregion Public Methods
+
+        #region Private Methods
+
+        private void StartGame()
+        {
+            Score = 0;
+            MoveCounter = 0;
+            TimeCounter = 0;
+            PairCounter = 0;
+            _elapsedTimer.Start();
+        }
+        
         private void EndGame()
         {
             if (_endTimer == null)
@@ -289,5 +298,7 @@ namespace ColorGame.SL.ViewModel
             _endTimer = null;
             Initialize();
         }
+
+        #endregion Private Methods
     }
 }

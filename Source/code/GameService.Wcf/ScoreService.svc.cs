@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
 using ColorGame.DataLayer.Model;
 
 namespace GameService.Wcf
@@ -12,15 +7,6 @@ namespace GameService.Wcf
     // NOTE: In order to launch WCF Test Client for testing this service, please select ScoreService.svc or ScoreService.svc.cs at the Solution Explorer and start debugging.
     public class ScoreService : IScoreService
     {
-        public void DoWork()
-        {
-        }
-
-        public string GetData(int value)
-        {
-            return string.Format("You entered: {0}", value);
-        }
-
         public void Save(UserScore userScore)
         {
             if (userScore == null)
@@ -33,9 +19,8 @@ namespace GameService.Wcf
 
         public UserScore[] GetTopRankersWithCurrentUser(UserScore userScore)
         {
-            var results = UserScore.GetTopRankersWithCurrentUser(userScore);
+            UserScore[] results = UserScore.GetTopRankersWithCurrentUser(userScore);
             return results;
-
         }
     }
 }
