@@ -18,6 +18,9 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
                     <Grid x:Name="grid">
+                        <Grid.Effect>
+                            <DropShadowEffect />
+                        </Grid.Effect>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CheckStates">
                                 <VisualStateGroup.Transitions>
@@ -108,6 +111,18 @@
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Indeterminate"/>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.ShadowDepth)" Storyboard.TargetName="grid" d:IsOptimized="True"/>
+                                        <ColorAnimation Duration="0" To="#FF5AFF00" Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Color)" Storyboard.TargetName="grid" d:IsOptimized="True"/>
+                                        <DoubleAnimation Duration="0" To="30" Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)" Storyboard.TargetName="grid" d:IsOptimized="True"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed"/>
+                                <VisualState x:Name="Disabled"/>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Image x:Name="imgFront" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
